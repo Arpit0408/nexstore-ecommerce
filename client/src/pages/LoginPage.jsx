@@ -37,7 +37,7 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-[75vh] flex items-center justify-center">
+    <div className="min-h-[75vh] flex items-center justify-center ">
       <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-2xl p-7 sm:p-8">
         <div className="text-center mb-6">
           <div className="w-11 h-11 rounded-xl bg-zinc-800 border border-zinc-700/60 text-zinc-200 mx-auto flex items-center justify-center mb-3">
