@@ -37,74 +37,92 @@ const LoginPage = () => {
   };
 
   return (
-    <div className="min-h-[80vh] flex items-center justify-center">
-      <div className="w-full max-w-md bg-slate-900 border border-slate-800 rounded-2xl p-8 shadow-xl shadow-black/40">
-        
-        <div className="text-center mb-8">
-          <div className="w-12 h-12 rounded-2xl bg-indigo-600/10 border border-indigo-500/20 text-indigo-400 mx-auto flex items-center justify-center mb-3">
-            <LogIn className="w-6 h-6" />
+    <div className="min-h-[75vh] flex items-center justify-center">
+      <div className="w-full max-w-md bg-zinc-900 border border-zinc-800 rounded-2xl p-7 sm:p-8">
+        <div className="text-center mb-6">
+          <div className="w-11 h-11 rounded-xl bg-zinc-800 border border-zinc-700/60 text-zinc-200 mx-auto flex items-center justify-center mb-3">
+            <LogIn className="w-5 h-5" />
           </div>
-          <h1 className="text-2xl font-bold text-white">Welcome Back</h1>
-          <p className="text-sm text-slate-400 mt-1">Sign in to manage your products</p>
+          <h1 className="text-xl sm:text-2xl font-semibold text-white tracking-tight">
+            Welcome Back
+          </h1>
+          <p className="text-xs text-zinc-400 mt-1">
+            Sign in to access your account
+          </p>
         </div>
 
         <form onSubmit={handleSubmit(onSubmit)} className="space-y-4">
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
+            <label className="block text-xs font-medium text-zinc-300 mb-1.5">
               Email Address
             </label>
             <div className="relative">
-              <Mail className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Mail className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="email"
-                placeholder="name@example.com"
+                placeholder="Enter your email"
                 {...register('email', {
                   required: 'Email is required',
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Please provide a valid email address',
+                    message: 'Please enter a valid email address',
                   },
                 })}
-                className={`w-full bg-slate-950 border ${
-                  errors.email ? 'border-rose-500' : 'border-slate-800'
-                } rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors`}
+                className={`w-full bg-zinc-950 border ${
+                  errors.email ? 'border-rose-500' : 'border-zinc-800'
+                } rounded-lg pl-10 pr-3.5 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-600 focus:outline-none transition-colors`}
               />
             </div>
-            {errors.email && <p className="text-xs text-rose-400 mt-1">{errors.email.message}</p>}
+            {errors.email && (
+              <p className="text-xs text-rose-400 mt-1">
+                {errors.email.message}
+              </p>
+            )}
           </div>
 
           <div>
-            <label className="block text-xs font-semibold uppercase tracking-wider text-slate-400 mb-1.5">
+            <label className="block text-xs font-medium text-zinc-300 mb-1.5">
               Password
             </label>
             <div className="relative">
-              <Lock className="w-4 h-4 text-slate-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
+              <Lock className="w-4 h-4 text-zinc-500 absolute left-3.5 top-1/2 -translate-y-1/2" />
               <input
                 type="password"
-                placeholder="••••••••"
+                placeholder="Enter your password"
                 {...register('password', {
                   required: 'Password is required',
                 })}
-                className={`w-full bg-slate-950 border ${
-                  errors.password ? 'border-rose-500' : 'border-slate-800'
-                } rounded-xl pl-10 pr-4 py-2.5 text-sm text-white placeholder:text-slate-600 focus:border-indigo-500 focus:ring-1 focus:ring-indigo-500 transition-colors`}
+                className={`w-full bg-zinc-950 border ${
+                  errors.password ? 'border-rose-500' : 'border-zinc-800'
+                } rounded-lg pl-10 pr-3.5 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-600 focus:outline-none transition-colors`}
               />
             </div>
-            {errors.password && <p className="text-xs text-rose-400 mt-1">{errors.password.message}</p>}
+            {errors.password && (
+              <p className="text-xs text-rose-400 mt-1">
+                {errors.password.message}
+              </p>
+            )}
           </div>
 
           <button
             type="submit"
             disabled={isSubmitting}
-            className="w-full mt-2 bg-indigo-600 hover:bg-indigo-500 text-white font-medium py-2.5 rounded-xl shadow-lg shadow-indigo-600/30 transition-all flex items-center justify-center gap-2 disabled:opacity-50"
+            className="w-full mt-2 bg-white hover:bg-zinc-200 text-zinc-950 font-medium py-2.5 rounded-lg transition-colors flex items-center justify-center gap-2 text-sm disabled:opacity-50"
           >
-            {isSubmitting ? <Loader2 className="w-4 h-4 animate-spin" /> : 'Sign In'}
+            {isSubmitting ? (
+              <Loader2 className="w-4 h-4 animate-spin text-zinc-900" />
+            ) : (
+              'Sign In'
+            )}
           </button>
         </form>
 
-        <div className="mt-6 text-center text-xs text-slate-400">
+        <div className="mt-5 text-center text-xs text-zinc-400">
           Don't have an account?{' '}
-          <Link to="/register" className="text-indigo-400 hover:text-indigo-300 font-semibold">
+          <Link
+            to="/register"
+            className="text-zinc-200 hover:underline font-medium"
+          >
             Create account
           </Link>
         </div>
@@ -114,3 +132,4 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
