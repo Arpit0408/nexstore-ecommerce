@@ -1,10 +1,10 @@
-import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
-import { setCredentials } from '../redux/authSlice.js';
-import axiosInstance from '../api/axiosInstance.js';
-import toast from 'react-hot-toast';
-import { LogIn, Mail, Lock, Loader2 } from 'lucide-react';
+import { useForm } from "react-hook-form";
+import { Link, useNavigate } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../redux/authSlice.js";
+import axiosInstance from "../api/axiosInstance.js";
+import toast from "react-hot-toast";
+import { LogIn, Mail, Lock, Loader2 } from "lucide-react";
 
 const LoginPage = () => {
   const {
@@ -19,19 +19,19 @@ const LoginPage = () => {
 
   const onSubmit = async (data) => {
     try {
-      const response = await axiosInstance.post('/auth/login', data);
+      const response = await axiosInstance.post("/auth/login", data);
       const { user, accessToken } = response.data;
 
       dispatch(setCredentials({ user, accessToken }));
       toast.success(`Welcome back, ${user.name}!`);
-      navigate('/');
+      navigate("/");
     } catch (err) {
       if (err.response?.data?.errors) {
         err.response.data.errors.forEach((e) => {
-          setError(e.field, { type: 'manual', message: e.message });
+          setError(e.field, { type: "manual", message: e.message });
         });
       } else {
-        toast.error(err.response?.data?.message || 'Invalid email or password');
+        toast.error(err.response?.data?.message || "Invalid email or password");
       }
     }
   };
@@ -61,15 +61,15 @@ const LoginPage = () => {
               <input
                 type="email"
                 placeholder="Enter your email"
-                {...register('email', {
-                  required: 'Email is required',
+                {...register("email", {
+                  required: "Email is required",
                   pattern: {
                     value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                    message: 'Please enter a valid email address',
+                    message: "Please enter a valid email address",
                   },
                 })}
                 className={`w-full bg-zinc-950 border ${
-                  errors.email ? 'border-rose-500' : 'border-zinc-800'
+                  errors.email ? "border-rose-500" : "border-zinc-800"
                 } rounded-lg pl-10 pr-3.5 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-600 focus:outline-none transition-colors`}
               />
             </div>
@@ -89,11 +89,11 @@ const LoginPage = () => {
               <input
                 type="password"
                 placeholder="Enter your password"
-                {...register('password', {
-                  required: 'Password is required',
+                {...register("password", {
+                  required: "Password is required",
                 })}
                 className={`w-full bg-zinc-950 border ${
-                  errors.password ? 'border-rose-500' : 'border-zinc-800'
+                  errors.password ? "border-rose-500" : "border-zinc-800"
                 } rounded-lg pl-10 pr-3.5 py-2.5 text-sm text-zinc-100 placeholder:text-zinc-500 focus:border-zinc-600 focus:outline-none transition-colors`}
               />
             </div>
@@ -112,13 +112,13 @@ const LoginPage = () => {
             {isSubmitting ? (
               <Loader2 className="w-4 h-4 animate-spin text-zinc-900" />
             ) : (
-              'Sign In'
+              "Sign In"
             )}
           </button>
         </form>
 
         <div className="mt-5 text-center text-xs text-zinc-400">
-          Don't have an account?{' '}
+          Don't have an account?{" "}
           <Link
             to="/register"
             className="text-zinc-200 hover:underline font-medium"
@@ -132,4 +132,3 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
-
